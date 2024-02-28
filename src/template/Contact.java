@@ -14,7 +14,7 @@ import java.util.List;
 
 class Contact {
 
-	public Contact(String string) {  
+	public Contact(String string) {
 		// TODO Auto-generated constructor stub
 	}
 
