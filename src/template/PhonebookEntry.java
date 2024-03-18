@@ -11,14 +11,20 @@ package template;
 
 class PhonebookEntry{
 
+	String type;
+	String phoneNumber;
+	
+	public PhonebookEntry(String type, String phoneNumber) {
+		this.type = type;
+		this.phoneNumber = phoneNumber;
+		}
+	
 	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return type;
 	}
 
 	public String getPhoneNumber() {
-		// TODO Auto-generated method stub
-		return null;
+		return phoneNumber;
 	}
 
  

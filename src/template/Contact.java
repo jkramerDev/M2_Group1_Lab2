@@ -1,5 +1,6 @@
 package template;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,19 +14,21 @@ import java.util.List;
  */
 
 class Contact {
+	
+	String name;
+	List<PhonebookEntry> list;
 
-	public Contact(String string) {
-		// TODO Auto-generated constructor stub
+	public Contact(String name) {
+		this.name = name;
+		list = new ArrayList<>();
 	}
 
-	public void addPhonebookEntry(String string, String string2) {
-		// TODO Auto-generated method stub
-		
+	public void addPhonebookEntry(String type, String number) {
+		list.add(new PhonebookEntry(type, number));
 	}
 
 	public List<PhonebookEntry> getPhonebookEntries() {
-		// TODO Auto-generated method stub
-		return null;
+		return list;
 	}
 	 
 
