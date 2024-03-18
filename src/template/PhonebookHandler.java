@@ -13,14 +13,38 @@ import java.util.*;
 
 public class PhonebookHandler implements iPhonebookHander{
 
+	Map<Contact, List<PhonebookEntry>> phonebook;
+	Set<Contact> set; 
+	
 	public PhonebookHandler(Map<Contact, List<PhonebookEntry>> phonebook) {
-		// TODO Auto-generated constructor stub
+		this.phonebook = phonebook;
 	}
 
 	@Override
 	public List<Contact> sortByName() {
-		// TODO Auto-generated method stub
-		return null;
+		set = phonebook.keySet();
+		Contact[] array = (Contact[]) set.toArray();
+		
+		for (int i = 0; i < set.size() - 1; i++)
+		{
+			for (int j = 0; j < array.length - i - 1; j++) {
+				if (array[j].toString().compareTo(array[j + 1].toString()) == -1) {
+					swap(array, j, j + 1);
+				}
+			}
+		}
+		
+		List<Contact> list = new ArrayList<>();
+		for (Contact e : array) {
+			list.add(e);
+		}
+		return list;
+	}
+	
+	void swap(Contact[] a, int m, int n) {
+		Contact temp = a[m];
+		a[m] = a[n];
+		a[n] = temp;
 	}
 
 	@Override
@@ -31,9 +55,14 @@ public class PhonebookHandler implements iPhonebookHander{
 
 	@Override
 	public void display(List<Contact> sortedContacts) {
-		// TODO Auto-generated method stub
+		for (Contact contact : sortedContacts) {
+			System.out.print("Name: " + contact.name + ", Phone Number(s): ");
+			for (PhonebookEntry entry : contact.getPhonebookEntries()) {
+				System.out.print("[" + entry.getPhoneNumber() + ", " + entry.getType());
+			}
+		}
 		
 	}
 
- 
+	
 }
