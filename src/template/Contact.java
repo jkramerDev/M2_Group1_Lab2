@@ -2,6 +2,7 @@ package template;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * model a Contact 
@@ -30,6 +31,22 @@ class Contact {
 	public List<PhonebookEntry> getPhonebookEntries() {
 		return list;
 	}
-	 
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(list, name);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contact other = (Contact) obj;
+		return Objects.equals(list, other.list) && Objects.equals(name, other.name);
+	}
 
 }
