@@ -23,22 +23,25 @@ public class PhonebookHandler implements iPhonebookHander{
 	@Override
 	public List<Contact> sortByName() {
 		set = phonebook.keySet();
-		Contact[] array = (Contact[]) set.toArray();
+		int length = set.size();
+		Contact[] array = new Contact[length];
+		set.toArray(array);
 		
-		for (int i = 0; i < set.size() - 1; i++)
+		
+		for (int i = 0; i < length - 1; i++)
 		{
-			for (int j = 0; j < array.length - i - 1; j++) {
-				if (array[j].toString().compareTo(array[j + 1].toString()) == -1) {
+			for (int j = 0; j < length - i - 1; j++) {
+				if (array[j].getName().compareTo(array[j + 1].getName()) < 0) {
 					swap(array, j, j + 1);
 				}
 			}
 		}
 		
-		List<Contact> list = new ArrayList<>();
-		for (Contact e : array) {
-			list.add(e);
-		}
+		List<Contact> list = Arrays.asList(array);
+		Collections.reverse(list);
+		
 		return list;
+		
 	}
 	
 	void swap(Contact[] a, int m, int n) {
@@ -49,17 +52,28 @@ public class PhonebookHandler implements iPhonebookHander{
 
 	@Override
 	public List<PhonebookEntry> binarySearch(List<Contact> sortedContacts, String name) {
-		// TODO Auto-generated method stub
+		int low = 0;
+		int high = sortedContacts.size() - 1;
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			if (sortedContacts.get(mid).getName().equals(name)) {
+				return sortedContacts.get(mid).getPhonebookEntries();
+			}
+			if (sortedContacts.get(mid).getName().compareTo(name) < 0) {
+				low = mid + 1;
+			}
+			else {
+				high = mid - 1;
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public void display(List<Contact> sortedContacts) {
+		System.out.println("Sorted Phonebook (Bubble Sort)");
 		for (Contact contact : sortedContacts) {
-			System.out.print("Name: " + contact.name + ", Phone Number(s): ");
-			for (PhonebookEntry entry : contact.getPhonebookEntries()) {
-				System.out.print("[" + entry.getPhoneNumber() + ", " + entry.getType());
-			}
+			System.out.println(contact.getName());
 		}
 		
 	}

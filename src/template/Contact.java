@@ -34,7 +34,7 @@ class Contact {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(list, name);
+		return name.length();
 	}
 	
 	@Override
@@ -49,8 +49,15 @@ class Contact {
 		return Objects.equals(list, other.list) && Objects.equals(name, other.name);
 	}
 	
-	@Override
-	public String toString() {
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String toPrint() {
 		String word = "Name: " + name + ", Phone Number(s): [";
 		int i = 0;
 		int size = getPhonebookEntries().size();

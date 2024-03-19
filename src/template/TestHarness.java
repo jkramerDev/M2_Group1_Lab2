@@ -16,6 +16,7 @@ public class TestHarness {
 	public static void main(String[] args) throws InterruptedException {
 		init();
 		
+		
 		//TODO: 2 cases:
 		//display non equality using your overriden equals method
 		//display equality using your overriden equals method
@@ -74,7 +75,7 @@ public class TestHarness {
 
 	public static void TEST_Equals(Contact r1, Contact r2) {
 
-		System.out.println("Checking r1.equals(r2) for: \n" + r1.toString() + "\n" + r2.toString());
+		System.out.println("Checking r1.equals(r2) for: \n" + r1.toPrint() + "\n" + r2.toPrint());
 		System.out.println(r1.equals(r2));
 
 		System.out.println();
@@ -82,7 +83,7 @@ public class TestHarness {
 
 	public static void TEST_hashcode(Contact r1, Contact r2) {
 
-		System.out.println("Checking r1.hashcode = r2.hashcode for: \n" + r1.toString() + "\n" + r2.toString());
+		System.out.println("Checking r1.hashcode = r2.hashcode for: \n" + r1.toPrint() + "\n" + r2.toPrint());
 		if (r1.hashCode() == r2.hashCode()) {
 			System.out.println("Hash matches - we're in the same bucket ( collision!): " + r1.hashCode());
 
